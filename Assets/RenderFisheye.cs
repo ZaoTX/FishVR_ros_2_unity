@@ -31,15 +31,18 @@ public class RenderFisheye : MonoBehaviour {
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-	   Debug.Log("OnRenderImage: Fisheye");
-       if (shader != null) {
-       	   material.SetTexture("_Cube", cubemap_script.cubemap);
-       	   material.SetFloat("_Alpha", alpha);
-       	   material.SetFloat("_Chi", chi);
-       	   material.SetFloat("_FocalLength", focalLength);
-           Graphics.Blit(source, destination, material);
-       } else {
-           Graphics.Blit(source, destination);
-       }
+        Debug.Log("OnRenderImage: Fisheye");
+        if (shader != null)
+        {
+            material.SetTexture("_Cube", cubemap_script.cubemap);
+            material.SetFloat("_Alpha", alpha);
+            material.SetFloat("_Chi", chi);
+            material.SetFloat("_FocalLength", focalLength);
+            Graphics.Blit(source, destination, material);
+        }
+        else
+        {
+            Graphics.Blit(source, destination);
+        }
     }
 }

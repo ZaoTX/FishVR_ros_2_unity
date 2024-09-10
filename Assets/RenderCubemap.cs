@@ -5,29 +5,27 @@ using UnityEngine.Rendering;
 
 public class RenderCubemap : MonoBehaviour {
     public RenderTexture cubemap;
-    public int resolution = 512;
-    Camera cam ;
+    public int resolution = 256;
+
     void Initialize() {
       if(cubemap == null) {
-        cubemap = new RenderTexture(resolution, resolution, 16);
-            cubemap.dimension = TextureDimension.Cube;
-            cubemap.Create();
-        }
+        cubemap = new RenderTexture(resolution, resolution, 24);
+        cubemap.dimension = TextureDimension.Cube;
+      }
     }
     
     void Awake () {
-        cam = GetComponent<Camera>();
-        Initialize();
+      Initialize();
     }
 
     void LateUpdate () {
-          
-          cam.RenderToCubemap(cubemap);
+          Camera cam = GetComponent<Camera>();
+          cam.RenderToCubemap(cubemap, 63, Camera.MonoOrStereoscopicEye.Mono);
     }
     
-    void OnRenderImage(RenderTexture source, RenderTexture destination)
+    /*void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
        Graphics.Blit(source, destination);
-    }
+    }*/
 
 }
