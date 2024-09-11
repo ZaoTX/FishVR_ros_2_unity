@@ -21,5 +21,13 @@ public class ConstantMovement : MonoBehaviour
         {
             transform.Rotate(transform.up, rotationDir * speed * Time.deltaTime, Space.Self);
         }
+        if (Input.GetKeyDown(KeyCode.I)){
+             movingDir *=-1;
+        }
+        if (transform.position.x<=-10){
+            movingDir *=-1;
+        }else if (transform.position.x>=10){
+            movingDir *=-1;
+        }
     }
 }

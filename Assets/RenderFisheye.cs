@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-
+using TMPro;
 public class RenderFisheye : MonoBehaviour {
     public RenderCubemap cubemap_script;
     public Shader shader;
@@ -10,6 +10,9 @@ public class RenderFisheye : MonoBehaviour {
     public float chi = 0.0f;
     public float focalLength = 1.0f;
 
+    public TMP_Text alphaVal;
+    public TMP_Text chiVal;
+    public TMP_Text focalVal;
     private Material _material;
     private Material material {
         get {
@@ -43,6 +46,32 @@ public class RenderFisheye : MonoBehaviour {
         else
         {
             Graphics.Blit(source, destination);
+        }
+    }
+    void Update(){
+        if (Input.GetKeyDown(KeyCode.A)){
+             alpha+=0.01f;
+             alphaVal.text = alpha.ToString();
+        }
+        else if (Input.GetKeyDown(KeyCode.Z)){
+             alpha-=0.01f;
+             alphaVal.text = alpha.ToString();
+        }
+        if (Input.GetKeyDown(KeyCode.D)){
+             chi+=0.01f;
+             chiVal.text = chi.ToString();
+        }
+        else if (Input.GetKeyDown(KeyCode.C)){
+             chi-=0.01f;
+             chiVal.text = chi.ToString();
+        }
+        if (Input.GetKeyDown(KeyCode.F)){
+             focalLength+=0.01f;
+             focalVal.text = focalLength.ToString();
+        }
+        else if (Input.GetKeyDown(KeyCode.V)){
+             focalLength-=0.01f;
+             focalVal.text = focalLength.ToString();
         }
     }
 }
